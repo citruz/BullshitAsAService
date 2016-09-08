@@ -1,0 +1,3 @@
+tensorflow==0.10
+tflearn==0.2
+requests
