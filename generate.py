@@ -6,9 +6,7 @@ from six.moves import urllib
 import tflearn
 from tflearn.data_utils import *
 
-path = "shakespeare_input.txt"
-if not os.path.isfile(path):
-    urllib.request.urlretrieve("https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resources/shakespeare_input.txt", path)
+path = "inputv1.txt"
 
 maxlen = 25
 
@@ -28,14 +26,12 @@ g = tflearn.regression(g, optimizer='adam', loss='categorical_crossentropy',
 m = tflearn.SequenceGenerator(g, dictionary=char_idx,
                               seq_maxlen=maxlen,
                               clip_gradients=5.0,
-                              checkpoint_path='model_checkpoints')
-m.load('model_checkpoints-21903')
+                              checkpoint_path='model_chdddeckpoints')
+m.load('model.tflearn')
 
-for i in range(50):
+for i in range(0,1, 0.1):
     seed = random_sequence_from_textfile(path, maxlen)
     print("-- TESTING...")
-    print("-- Test with temperature of 1.0 --")
-    print(m.generate(600, temperature=1.0, seq_seed=seed))
-    print("-- Test with temperature of 0.5 --")
-    print(m.generate(600, temperature=0.5, seq_seed=seed))
+    print("-- Test with temperature of", i, "--")
+    print(m.generate(600, temperature=i, seq_seed=seed))
 

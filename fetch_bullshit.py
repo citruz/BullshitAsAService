@@ -61,7 +61,7 @@ def read_url(url, queue):
 
 def fetch_parallel():
     result = Queue.Queue()
-    with open('urls.txt') as f:
+    with open('urlsv1.txt') as f:
         threads = [threading.Thread(target=read_url, args = (url,result)) for url in f]
         for t in threads:
             t.start()
@@ -87,7 +87,7 @@ print "Found", len(text_blocks), "text blocks"
 
 random.shuffle(text_blocks)
 
-with codecs.open('input.txt', 'w', 'utf-8') as f:
+with codecs.open('inputv1.txt', 'w', 'utf-8') as f:
     for text_block in text_blocks:
         f.write(text_block[0])
         f.write(":\n")
